@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  background: #2f3542;
+  height: 100vh;
+}
+
+h1{
+  margin-bottom: 10px;
+}
+
+.modal {
+  margin: 10vh auto;
+  background: linear-gradient(180deg, #4facfe, #00c6ff);
+  padding: 3px 30px 15px;
+  width: 560px;
+  height:700px;
+  text-align: center;
+  color: white;
+}
+
+.subtitle {
+  font-size: 18px;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.form {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-text-wrapper{
+  height:40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:20px;
+}
+
+
+.row {
+  display: flex;
+  gap: 10px;
+  height: 50px;
+}
+
+.row input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+}
+
+.input-radio-wrapper{
+  height:40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:25px;
+}
+
+
+input[type="radio"],
+input[type="checkbox"] {
+  transform: scale(0.8);
+}
+
+.option {
+  flex:1;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.option label {
+  display: flex;
+  gap: 10px; 
+  cursor: pointer;
+}
+
+.checkbox {
+  text-align: left;
+  font-size: 13px;
+  padding-left: 10px;
+}
+
+button {
+  margin-top: 5px;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: #00d2d3;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #01a3a4;
+}
