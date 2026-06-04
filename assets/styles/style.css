@@ -14,7 +14,7 @@ h1{
   background: linear-gradient(180deg, #4facfe, #00c6ff);
   padding: 3px 30px 15px;
   width: 560px;
-  height:700px;
+  height:850px;
   text-align: center;
   color: white;
 }
@@ -27,7 +27,7 @@ h1{
 }
 
 .form {
-  height: 80%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   gap: 15px;
