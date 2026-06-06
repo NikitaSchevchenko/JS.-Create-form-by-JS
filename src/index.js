@@ -270,6 +270,7 @@ function checkPassword(event) {
         /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]).{8,}$/.test(
             inputText
         );
+    checkPasswordCoincidence();
     if (!isValid) {
         if (!invalidPasswordMessage) {
             invalidPasswordMessage = document.createElement("div");
@@ -289,17 +290,19 @@ function checkPassword(event) {
     }
 }
 
-function checkPasswordCoincidence(event) {
-    const passwordConfirmationText = event.target.value;
+function checkPasswordCoincidence() {
+    const confirmationPasswordInput = document.querySelector(
+        ".input-text-wrapper > .row:nth-child(3) > .input-wrapper:nth-child(2) > input"
+    );
+    const passwordConfirmationText = confirmationPasswordInput.value;
     const passwordText = document.querySelector(
         ".input-text-wrapper > .row:nth-child(3) > .input-wrapper:first-child > input"
     ).value;
     let passwordMismatchMessage = document.querySelector(
         "#mismatchpassword-error"
     );
-    const inputContainer = event.target.parentNode;
+    const inputContainer = confirmationPasswordInput.parentNode;
     const doPasswordsMatch = passwordText === passwordConfirmationText;
-    console.log(passwordText,passwordConfirmationText);
 
     if (!doPasswordsMatch) {
         if (!passwordMismatchMessage) {
@@ -308,14 +311,14 @@ function checkPasswordCoincidence(event) {
             passwordMismatchMessage.id = "mismatchpassword-error";
             passwordMismatchMessage.textContent = "Passwords must match";
             inputContainer.appendChild(passwordMismatchMessage);
-            event.target.classList.add("invalid-data");
+            confirmationPasswordInput.classList.add("invalid-data");
         }
         return;
     }
 
     if (passwordMismatchMessage) {
         inputContainer.removeChild(passwordMismatchMessage);
-        event.target.classList.remove("invalid-data");
+        confirmationPasswordInput.classList.remove("invalid-data");
     }
 }
 
