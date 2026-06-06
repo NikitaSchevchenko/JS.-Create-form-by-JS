@@ -271,6 +271,7 @@ function checkPassword(event) {
             inputText
         );
     checkPasswordCoincidence();
+    
     if (!isValid) {
         if (!invalidPasswordMessage) {
             invalidPasswordMessage = document.createElement("div");
