@@ -231,32 +231,99 @@ submitButton.addEventListener("click", collectProps);
 function checkEmail(event) {
     const inputText = event.target.value;
     const inputContainer = event.target.parentNode;
-    let invalidEmailMessage = document.querySelector("div.invalidemail-error");
+    let invalidEmailMessage = document.querySelector("#invalidemail-error");
     const isValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
         inputText
     );
 
     if (!isValid) {
         if (!invalidEmailMessage) {
-            console.log("Invalid email");
             invalidEmailMessage = document.createElement("div");
-            invalidEmailMessage.className = "invalidemail-error";
+            invalidEmailMessage.className = "invaliddata-error";
+            invalidEmailMessage.id = "invalidemail-error";
             invalidEmailMessage.textContent =
                 "Please enter a valid email (e.g. user@example.com)!";
             inputContainer.appendChild(invalidEmailMessage);
-            event.target.classList.add("invalid-email");
+            event.target.classList.add("invalid-data");
         }
         return;
     }
 
     if (invalidEmailMessage) {
         inputContainer.removeChild(invalidEmailMessage);
-        event.target.classList.remove("invalid-email");
+        event.target.classList.remove("invalid-data");
     }
 }
 
 const emailInput = document.querySelector(
     ".input-text-wrapper > .row:nth-child(2) input[type='email']"
 );
-console.log(emailInput);
 emailInput.addEventListener("change", checkEmail);
+
+function checkPassword(event) {
+    const inputText = event.target.value;
+    let invalidPasswordMessage = document.querySelector(
+        "#invalidpassword-error"
+    );
+    const inputContainer = event.target.parentNode;
+    const isValid =
+        /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]).{8,}$/.test(
+            inputText
+        );
+    if (!isValid) {
+        if (!invalidPasswordMessage) {
+            invalidPasswordMessage = document.createElement("div");
+            invalidPasswordMessage.className = "invaliddata-error";
+            invalidPasswordMessage.id = "invalidpassword-error";
+            invalidPasswordMessage.textContent =
+                "Password must be min 8 symbols long and contain at least 1 capital english letter, 1 number and one special symbol";
+            inputContainer.appendChild(invalidPasswordMessage);
+            event.target.classList.add("invalid-data");
+        }
+        return;
+    }
+
+    if (invalidPasswordMessage) {
+        inputContainer.removeChild(invalidPasswordMessage);
+        event.target.classList.remove("invalid-data");
+    }
+}
+
+function checkPasswordCoincidence(event) {
+    const passwordConfirmationText = event.target.value;
+    const passwordText = document.querySelector(
+        ".input-text-wrapper > .row:nth-child(3) > .input-wrapper:first-child > input"
+    ).value;
+    let passwordMismatchMessage = document.querySelector(
+        "#mismatchpassword-error"
+    );
+    const inputContainer = event.target.parentNode;
+    const doPasswordsMatch = passwordText === passwordConfirmationText;
+    console.log(passwordText,passwordConfirmationText);
+
+    if (!doPasswordsMatch) {
+        if (!passwordMismatchMessage) {
+            passwordMismatchMessage = document.createElement("div");
+            passwordMismatchMessage.className = "invaliddata-error";
+            passwordMismatchMessage.id = "mismatchpassword-error";
+            passwordMismatchMessage.textContent = "Passwords must match";
+            inputContainer.appendChild(passwordMismatchMessage);
+            event.target.classList.add("invalid-data");
+        }
+        return;
+    }
+
+    if (passwordMismatchMessage) {
+        inputContainer.removeChild(passwordMismatchMessage);
+        event.target.classList.remove("invalid-data");
+    }
+}
+
+const passwordInput = document.querySelector(
+    ".input-text-wrapper > .row:nth-child(3) > .input-wrapper:first-child > input"
+);
+const confirmationPasswordInput = document.querySelector(
+    ".input-text-wrapper > .row:nth-child(3) > .input-wrapper:nth-child(2) > input"
+);
+passwordInput.addEventListener("change", checkPassword);
+confirmationPasswordInput.addEventListener("change", checkPasswordCoincidence);
